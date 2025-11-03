@@ -1,6 +1,8 @@
 #!/bin/bash
 IP=$1
-pkg install -y curl jq traceroute
+if ping -q -c 1 -W 1 google.com &>/dev/null; then
+  pkg install -y curl jq traceroute
+fi
 clear
 date
 curl -s http://ifconfig.me/all.json | jq .
